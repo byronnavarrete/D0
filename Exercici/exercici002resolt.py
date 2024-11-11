@@ -2,7 +2,6 @@
 
 import math
 import os
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
 import utils
@@ -23,11 +22,11 @@ def main():
     global im_shinnosuke, im_shiro
     is_looping = True
 
-    path_shinnosuke = os.path.join(os.path.dirname(__file__), "./assets/exercici002/shinnosuke.png")
+    path_shinnosuke = os.path.join(os.path.dirname(__file__), "./shinnosuke.png")
     im_shinnosuke = pygame.image.load(path_shinnosuke).convert_alpha()
     im_shinnosuke = utils.scale_image(pygame, im_shinnosuke, target_width=100)
 
-    path_shiro = os.path.join(os.path.dirname(__file__), "./assets/exercici002/shiro.png")
+    path_shiro = os.path.join(os.path.dirname(__file__), "./shiro.png")
     im_shiro = pygame.image.load(path_shiro).convert_alpha()
     im_shiro = utils.scale_image(pygame, im_shiro, target_width=75)
 

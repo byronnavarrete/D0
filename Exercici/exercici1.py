@@ -21,3 +21,68 @@ clock = pygame.time.Clock()
 # Definir la finestra
 screen = pygame.display.set_mode((640, 480))
 pygame.display.set_caption('Window Title')
+
+# Bucle de l'aplicació
+def main():
+    is_looping = True
+
+    while is_looping:
+        is_looping = app_events()
+        app_run()
+        app_draw()
+
+        clock.tick(60) # Limitar a 60 FPS
+
+    # Fora del bucle, tancar l'aplicació
+    pygame.quit()
+    sys.exit()
+
+# Gestionar events
+def app_events():
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT: # Botó tancar finestra
+            return False
+    return True
+
+# Fer càlculs
+def app_run():
+    pass
+
+# Dibuixar
+def app_draw():
+    screen.fill(WHITE)
+    utils.draw_grid(pygame, screen, 50)
+    
+    # Fons vermell
+    pygame.draw.rect(screen, RED, (50, 50,550, 100))
+
+    # Texts
+    # blit es dibuixar una imatge sobre altra
+    fontT = pygame.font.SysFont("Arial", 60)
+    fontS = pygame.font.SysFont("Courier New", 40, bold=True)
+    fontB = pygame.font.SysFont("Arial", 28)
+
+    textt = fontT.render('HEADLINE NEWS', True, WHITE)
+    screen.blit(textt, (75, 70))
+
+    texts = fontS.render('World goes Wrong!', True, BLACK)
+    screen.blit(texts, (50, 160))
+
+    textg = fontS.render('YEP#', True, GREEN)
+    screen.blit(textg, (510, 155))
+
+    
+    text0 = fontB.render("Lorem ipsum dolor sit amet, consectetur", True, BLACK)
+    screen.blit(text0, (50, 250))
+
+    text1 = fontB.render("adipiscing elit, sed do eiusmod tempor", True, BLACK)
+    screen.blit(text1, (50, 285))
+
+    text2 = fontB.render("incididunt ut labore et dolore magna aliqua", True, BLACK)
+    screen.blit(text2, (50, 320))
+   
+
+    pygame.display.update()
+
+if __name__ == "__main__":
+    main()
