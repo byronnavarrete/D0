@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
 import random
-import os
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
 import utils
@@ -29,7 +27,7 @@ def main():
     is_looping = True
 
     window_width, window_height = screen.get_size()  # Obtenir els límits de la finestra    
-    list = [(random.randint(0, window_width), random.randint(0, window_height)) for _ in range(10)]
+    list = [(random.randint(0, window_width  - 1), random.randint(0, window_height  - 1)) for _ in range(10)]
 
     while is_looping:
         is_looping = app_events()

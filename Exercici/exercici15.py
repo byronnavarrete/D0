@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
 import math
-import os
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
 import utils
@@ -10,7 +8,7 @@ import utils
 # Definir colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-RED = (200, 0, 0)
+BLUE = (50, 120, 200)
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -47,24 +45,24 @@ def app_run():
 
 # Dibuixar
 def app_draw():
-    screen.fill(WHITE)
-    utils.draw_grid(pygame, screen, 50)
     
-    # Bucle cercles
-    odd = True
-    for cnt in range(225, 0, -25):
-        if odd:
-            color = RED
-        else:
-            color = WHITE
-        
-        pygame.draw.circle(screen, color, (350, 250), cnt)
-        odd = not odd
+    # Pintar el fons de blanc
+    screen.fill(WHITE)
 
-    # Bucle Relleus
-    for cnt in range(25, 250, 25):
-        pygame.draw.circle(screen, BLACK, (350, 250), cnt, 5)
+    # Dibuixar la graella
+    utils.draw_grid(pygame, screen, 50)
 
+    # Dibuixar les dades
+    columns = 21
+    hue_step = (360 / columns)
+    for column in range(0, columns):
+        x = 50 + column * 25
+        hue = hue_step * column
+
+        color = utils.hsl_to_rgb(hue, 1.0, 0.5)
+        pygame.draw.rect(screen, color, (x, 200, 25, 25))
+
+    # Actualitzar el dibuix a la finestra
     pygame.display.update()
 
 if __name__ == "__main__":

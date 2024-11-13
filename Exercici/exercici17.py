@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 
-import math
-import os
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
 import utils
@@ -55,32 +52,15 @@ def app_draw():
     utils.draw_grid(pygame, screen, 50)
 
     # Dibuixar les dades
-    center = {"x": 300, "y": 250}
-    
     for angle in range(0, 361, 15):
-        # Calculate current line points
-        p0 = utils.point_on_circle(center, 25, angle)
-        p1 = utils.point_on_circle(center, 150, angle)
         
-        # Calculate previous line points
-        prev_angle = angle - 15
-        prev_0 = utils.point_on_circle(center, 25, prev_angle)
-        prev_1 = utils.point_on_circle(center, 150, prev_angle)
+        pos0= utils.point_on_circle({ "x": 300, "y": 250 }, 25, angle)
+        pos1 = utils.point_on_circle({ "x": 300, "y": 250 }, 150, angle)
 
-        # Create color based on angle (optional, for color variation)
-        color = utils.hsl_to_rgb(angle, 1.0, 0.5)
-        
-        # Convert dictionary points to tuples for pygame
-        points = [
-            (int(p0["x"]), int(p0["y"])),
-            (int(p1["x"]), int(p1["y"])),
-            (int(prev_1["x"]), int(prev_1["y"])),
-            (int(prev_0["x"]), int(prev_0["y"]))
-        ]
-        
-        # Draw polygon between consecutive lines
-        pygame.draw.polygon(screen, color, points)
+        pos0_tuple = (pos0["x"], pos0["y"])
+        pos1_tuple = (pos1["x"], pos1["y"])
 
+        pygame.draw.line(screen, BLACK, pos0_tuple, pos1_tuple, 5)
 
     # Actualitzar el dibuix a la finestra
     pygame.display.update()

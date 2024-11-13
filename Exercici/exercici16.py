@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
 import math
-import os
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
 import utils
@@ -55,14 +53,21 @@ def app_draw():
     utils.draw_grid(pygame, screen, 50)
 
     # Dibuixar les dades
+    
+    rows = 15
     columns = 21
+    lgt_step = (1/ rows)
     hue_step = (360 / columns)
-    for column in range(0, columns):
-        x = 50 + column * 25
-        hue = hue_step * column
 
-        color = utils.hsl_to_rgb(hue, 1.0, 0.5)
-        pygame.draw.rect(screen, color, (x, 200, 25, 25))
+    for row in range(0, rows):
+        y = 50 + row * 25
+        lightness = lgt_step * row
+        for column in range(0, columns):
+            x = 50 + column * 25
+            hue = hue_step * column
+
+            color = utils.hsl_to_rgb(hue, 1.0, lightness)
+            pygame.draw.rect(screen, color, (x, y, 25, 25))
 
     # Actualitzar el dibuix a la finestra
     pygame.display.update()

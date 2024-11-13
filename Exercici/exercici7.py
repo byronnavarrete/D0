@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
 import math
-import os
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import sys
 import utils
@@ -53,35 +51,36 @@ def app_run():
 
 # Dibuixar
 def app_draw():
-    
-    # Pintar el fons de blanc
+ # Pintar el fons de blanc
     screen.fill(WHITE)
 
     # Dibuixar la graella
     utils.draw_grid(pygame, screen, 50)
 
-    # Dibuixar quadres
-    for q in range (0, len(colors)):
-        size = 50
-        x = 50 + (q * 100)
-        pygame.draw.rect(screen, colors[q], (x, 50, size, size))
+    # Dibuixar quadres amb els colors de la llista
+    for q in range(0, len(colors)):
+        size = 50 
+        x = 50 + (q * 100) 
+        pygame.draw.rect(screen, colors[q], (x, 50, size, size))  # Dibuixar el rectangle
 
-        radius = 25
-        x = 50 + (q * 100) + radius
-        pygame.draw.circle(screen, colors[q], (x, 150 + radius), radius, 2)
+        radius = 25  # Radi per al cercle
+        x = 50 + (q * 100) + radius  
+        pygame.draw.circle(screen, colors[q], (x, 150 + radius), radius, 2) 
 
-    grey = 0
-    for q in range (0, 10):
-        radius = 25
-        x = 50 + (q * 100) + radius
-        color = (grey, grey, grey)
-        draw_polygon(screen, color, (x, 250 + radius), radius, 3)
-        draw_polygon(screen, color, (x, 350 + radius), radius, 5)
-        grey = grey + 25
+    # Dibuixar polígons grisos (triangles i pentàgons)
+    grey = 0 
+    for q in range(0, 10):  # Recorrem 10 iteracions per a polígons grisos
+        radius = 25  # Radi del polígon
+        x = 50 + (q * 100) + radius 
+        color = (grey, grey, grey)  
+        draw_polygon(screen, color, (x, 250 + radius), radius, 3)  # Dibuixem un triangle
+        draw_polygon(screen, color, (x, 350 + radius), radius, 5)  # Dibuixem un pentàgon
+        grey = grey + 25  # Apliquem un augment de 25 per cada iteració
 
     # Actualitzar el dibuix a la finestra
     pygame.display.update()
 
+# Funció per dibuixar polígons (triangle, pentàgon, etc.)
 def draw_polygon(screen, color, center, radius, num_vertices, angle_offset=(math.pi / 3)):
     points = [
         (
@@ -90,8 +89,7 @@ def draw_polygon(screen, color, center, radius, num_vertices, angle_offset=(math
         )
         for i in range(num_vertices)
     ]
-    pygame.draw.polygon(screen, color, points)
-
+    pygame.draw.polygon(screen, color, points)  # Dibuixem el polígon
 
 if __name__ == "__main__":
     main()
