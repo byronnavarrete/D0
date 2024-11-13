@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os
+
 import pygame
 import sys
 import utils
