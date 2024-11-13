@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import math
-import os
 import pygame
 import sys
 import utils
